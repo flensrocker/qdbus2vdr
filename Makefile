@@ -83,9 +83,6 @@ first: all
 
 .SUFFIXES: .o .c .cpp .cc .cxx .C
 
-%.moc: %.h
-	moc $(DEFINES) $(INCPATH) $< -o $@
-
 .cpp.o:
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o "$@" "$<"
 
@@ -226,8 +223,10 @@ compiler_clean:
 
 ####### Compile
 
-osd.o: osd.cpp osd.h \
-		osd.moc
+%.moc: %.h
+	moc $(DEFINES) $(INCPATH) $< -o $@
+
+osd.o: osd.cpp osd.h osd.moc
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o osd.o osd.cpp
 
 qdbus2vdr.o: qdbus2vdr.cpp qdbus2vdr.h \
