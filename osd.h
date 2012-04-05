@@ -1,19 +1,22 @@
 #ifndef osd_h
 #define osd_h
 
-#include <QObject>
+#include <QMainWindow>
+#include <QLabel>
 
 #include <QDBusConnection>
 #include <QDBusInterface>
 
 namespace dbus2vdr
 {
-  class cOsd : public QObject
+  class cOsd : public QMainWindow
   {
     Q_OBJECT
 
   private:
     QDBusInterface *interface;
+
+    QLabel *image;
 
   public slots:
     void Open(QString osdid, int left, int top);

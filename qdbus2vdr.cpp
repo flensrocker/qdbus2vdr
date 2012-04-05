@@ -9,5 +9,6 @@ int main(int argc, char **argv)
   QApplication app(argc, argv);
   QDBusConnection system = QDBusConnection::systemBus();
   dbus2vdr::cOsd osd(system);
+  osd.show();
   return app.exec();
 }
